@@ -17,20 +17,20 @@ Since the radio for PPM/PWM was affordable we have one too in case we want to di
 ## BetaFPV LiteRadio 3 Pro Radio Transmitter- ELRS (Supports External Nano TX Module)
 | Links | Image |
 |-------|-------|
-|https://betafpv.com/collections/tx/products/literadio-3-pro-radio-transmitter <br> <br>https://support.betafpv.com/hc/en-us/articles/5987468200601-Manual-for-Lite-Radio3-Pro <br> <br> https://www.getfpv.com/betafpv-literadio-3-pro-radio-transmitter-elrs-supports-external-nano-tx-module.html |![controller](./Attachments/image29.png) |
+|https://betafpv.com/collections/tx/products/literadio-3-pro-radio-transmitter <br> <br>https://support.betafpv.com/hc/en-us/articles/5987468200601-Manual-for-Lite-Radio3-Pro <br> <br> https://www.getfpv.com/betafpv-literadio-3-pro-radio-transmitter-elrs-supports-external-nano-tx-module.html |![controller](./images/image29.png) |
 
 ## MATEKSYS ExpressLRS 2.4GHz Receiver - ELRS R24 D
 
 | Links | Image |
 |-------|-------|
-|https://www.getfpv.com/mateksys-expresslrs-2-4ghz-receiver-elrs-r24-d.html|![controller](./Attachments/image7.png) |
+|https://www.getfpv.com/mateksys-expresslrs-2-4ghz-receiver-elrs-r24-d.html|![controller](./images/image7.png) |
 
 
 ## MATEKSYS ExpressLRS 2.4GHz Receiver - PWM ELRS-R24-P6
 
 | Links | Image |
 |-------|-------|
-|https://www.getfpv.com/mateksys-expresslrs-2-4ghz-receiver-pwm-elrs-r24-p6.html|![controller](./Attachments/image3.png) |
+|https://www.getfpv.com/mateksys-expresslrs-2-4ghz-receiver-pwm-elrs-r24-p6.html|![controller](./images/image3.png) |
 
 ## Upgrading the ELRS firmware
 24Mar23
@@ -56,15 +56,15 @@ _#Select USB Serial (Debug)_<br>
 _#You will need to look for the Radio in the connections options_
 
 _#Version 2.5.2_
-![image24](./Attachments/image24.png)
-![image13](./Attachments/image13.png)
-![image22](./Attachments/image22.png)
+![image24](./images/image24.png)
+![image13](./images/image13.png)
+![image22](./images/image22.png)
 
 _#Build & Flash_<br>
 _#The first time it will take a while to download, install tools and build the firmware_
 
-![image9](./Attachments/image9.png)<br>
-![image2](./Attachments/image2.png)
+![image9](./images/image9.png)<br>
+![image2](./images/image2.png)
 
 _#Download and save on your computer the the LUA Script file_<br>
 _#Unplug the USB cable, turn off the radio, turn on again_
@@ -75,12 +75,12 @@ _#Then you can use your computer to upload the LUA script you saved earlier_<br>
 https://www.expresslrs.org/quick-start/transmitters/lua-howto/
 <br><br>
 Download the ELRSv3 Lua Script (you can simply right-click, save-as) into your radio's SD Card under the Scripts/Tools
-![image16](./Attachments/image16.png)
-![image26](./Attachments/image26.png)<br>
-![image20](./Attachments/image20.png)
+![image16](./images/image16.png)
+![image26](./images/image26.png)<br>
+![image20](./images/image20.png)
 <br><br>
 _#elrsV2.lua_<br>
-![image18](./Attachments/image18.png) <br>
+![image18](./images/image18.png) <br>
 _#Also, let's delete the older .lua script from the root of the DISK_IMG of the radio_
 <br><br>
 _#Remove the USB cable from the radio_<br>
@@ -102,31 +102,31 @@ _#Connect to the Wifi Network the receiver has created. It should be named somet
 _#After the Rx radio boots, wait to see the LED flashing quick. That is an indicadion that its Access Point and web server is running._<br>
 _#Using a web browser_<br>
 http://10.0.0.1/ <br>
-![image21](./Attachments/image21.png)<br>
-![image4](./Attachments/image4.png)<br>
-![image23](./Attachments/image23.png)<br>
-![image15](./Attachments/image15.png)
+![image21](./images/image21.png)<br>
+![image4](./images/image4.png)<br>
+![image23](./images/image23.png)<br>
+![image15](./images/image15.png)
 <br><br>
 _#Connect to the website of the device and upload new firmware_<br>
-![image28](./Attachments/image28.png)
+![image28](./images/image28.png)
 <br><br>
 Then if you connect the receiver to your local WiFi you can get to it by usings its IP address or name. You can scan the network and look for a device called elrs_rx
 <br><br>
 ex:  http://elrs_rx.local
-![image12](./Attachments/image12.png)
+![image12](./images/image12.png)
 <br><br>
 _#Because we will be on the field and not necessarily close to WiFi, let’s leave the AP of the radio on so we can configure it. Not very safe since someone can connect to it while the AP is on. We will check how to protect it with a  password on it a bit later.
 Moreover, I did not see how to name the radios, it would be hard to know what Rx radios is what in the network._<br>
-![image30](./Attachments/image30.png)
+![image30](./images/image30.png)
 <br><br>
 _#Let's get the Rx to be on 115200 baud rate_<br>
 _#Just connect to the webinterface of the Rx and set the baudrate_<br>
-![image10](./Attachments/image10.png)
+![image10](./images/image10.png)
 <br><br>
 _#We need to use a USB to TTL cable - [example from Amazon](https://www.amazon.com/DaFuRui-3Pack-PL2303TA-Serial-Console/dp/B08BF6ML1V/ref=sr_1_2_sspa?crid=1GTFAL8DU80F4&keywords=USB+to+TTL&qid=1679591543&sprefix=usb+to+ttl%2Caps%2C142&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFWSjBSODZZNkVNUFMmZW5jcnlwdGVkSWQ9QTA4NTIwNDIzMEpTWU1MN1JHWkYmZW5jcnlwdGVkQWRJZD1BMDUwMDE0MDJDNEI5S1hYU0g3NlQmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl)_<br>
-![image6](./Attachments/image6.png)<br>
+![image6](./images/image6.png)<br>
 _#Or you can use the embedded WiFi, how cool is that?_<br>
-![image14](./Attachments/image14.png)
+![image14](./images/image14.png)
 <br><br>
 Lets try the UART first
 
@@ -136,7 +136,7 @@ Green =<br>
 White = <br>
 
 _#Press and hold the boot button while connecting the USB to TTL device to your computer_<br>
-![image8](./Attachments/image8.png)<br>
+![image8](./images/image8.png)<br>
 http://www.mateksys.com/?portfolio=elrs-r24#tab-id-3<br>
 For ELRS-R24-D, if update from 2.x to 3.x, Pls select target MATEK 2400 RX R24D and click on Force Flash
 <br><br>https://github.com/kkbin505/Simple_RX
@@ -149,16 +149,16 @@ For ELRS-R24-D, if update from 2.x to 3.x, Pls select target MATEK 2400 RX R24D 
 
 _#Let's keep it simple first just by using Arduinos, then we will try a Raspberry PI Pico, and then UCSD DRTC if we want to make everything CAN_<br>
 https://www.amazon.com/gp/product/B09C5H78BP/ref=ppx_yo_dt_b_asin_title_o01_s02?ie=UTF8&psc=1<br>
-![image25](./Attachments/image25.png)
+![image25](./images/image25.png)
 <br><br>
 _#I got this coming too so we use a better USB connector, USB C vs. uUSB._<br>
 _#I just did not see there was a version with USB C earlier._<br>
 https://www.amazon.com/gp/product/B0BCW67NJP/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1<br>
-![image25](./Attachments/image25.png)
+![image25](./images/image25.png)
 <br><br>
 https://github.com/kkbin505/Simple_RX <br>
-![image19](./Attachments/image19.png)<br>
-![image17](./Attachments/image17.png)
+![image19](./images/image19.png)<br>
+![image17](./images/image17.png)
 <br><br>
 ## Some Background and References ELRS Radio (Long Range Digital)
 TCIII — 03/17/2023 1:11 PM
