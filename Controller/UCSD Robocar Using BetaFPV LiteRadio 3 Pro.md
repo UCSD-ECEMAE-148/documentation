@@ -365,3 +365,110 @@ https://github.com/n6wxd/wireless-rc-adapter/blob/master/wireless-rc-adapter-2.1
 https://github.com/n6wxd/wireless-rc-adapter <br>
 https://github.com/wireless-rc-adapter/wireless-rc-adapter/wiki<br>
 ![image11](/images/image11.png)<br><br>
+We just need 3 channels from the RC Rx
+<br><br>
+[The Arduino board we got out of Amazon.com](https://www.amazon.com/gp/product/B07FXCTVQP/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) (Pro Micro) it is compatible with Arduino Leonardo firmware not Arduino Pro Micro. Also, it does not have Pin 11 available for a connection.
+
+We need to change the pins used at the board and Arduino IDE to be 10,9,8
+
+At pwm.ino<br>
+From <br>
+#elif defined(ARDUINO_AVR_MICRO) || defined(ARDUINO_AVR_LEONARDO)<br>
+Ch1 -> Pin 8<br>
+Ch2 -> Pin 9<br>
+Ch3 -> Pin 10<br>
+ 
+Also, Ch3 “+” and “-” are used to power the RC Rx Radio<br>
+Ch3+ (middle pin) -> Pin VCC (5V)<br>
+Ch3- -> Pin GND (Ground)<br>
+
+Note: The power to the Arduino comes from the USB cable that connects to the JTN or RPI. The power to the RC radio comes from the Arduino.
+https://inventr.io/blogs/arduino/arduino-pro-micro-review-scroller <br>
+![image1](/images/image1.png) <br>
+The GPIO for Jetson Nano and RPI are the same. Connect the PWM board using I2C. See instructions for ECE MAE 148. Nothing changes here. The steering servo and the ESC connect to the PWM board, not Arudino.
+<br><br>
+## How to Make it Work
+Install the latest version of the Arduino IDE from here 
+
+Download the Arduino files from here to a local directory
+https://github.com/n6wxd/wireless-rc-adapter
+
+Plug the Arduino into one of your computer USB port<br>
+Configure the Arduino GUI to use Arduino Leonardo<br>
+Configure the USB Port used for the Arduino
+<br><br>
+### wireless-rc-adapter-2.1.ino
+Open wireless-rc-adapter-2.1.ino in the Arduino GUI
+<br><br>
+### pwm.ino
+The Arduino IDE  should show a tab for pwm.ino<br>
+Click over the tab pwm.ino<br>
+Change the pins as below. Our radio has 3 channels, we just use the first 3 pins numbered 10,9,8
+<br><br>
+#elif defined(ARDUINO_AVR_MICRO) || defined(ARDUINO_AVR_LEONARDO)<br>
+    const uint8_t RC_PINS[6] = {8, 9, 10, PB2, PB1,11};
+<br><br>
+Save the file
+<br><br>
+### led.ino
+Change back what Steve B. modified for the LEDs<br>
+From <br>
+#elif defined(ARDUINO_AVR_MICRO) || defined(ARDUINO_AVR_LEONARDO)<br>
+    #define RXLED 13  // RXLED is on pin 17<br>
+    #define TXLED 30  // TXLED is on pin 30<br><br>
+To<br>
+#elif defined(ARDUINO_AVR_MICRO) || defined(ARDUINO_AVR_LEONARDO)<br>
+    #define RXLED 17  // RXLED is on pin 17<br>
+    #define TXLED 30  // TXLED is on pin 30<br>
+
+Save the file
+
+Upload the wireless-rc-adapter-2.1.ino into the Aruduino, the LEDs should blink when uploading the software then blink in different patterns depending on software stage
+
+[See here](https://github.com/wireless-rc-adapter/wireless-rc-adapter/wiki/manual)<br>
+https://github.com/wireless-rc-adapter/wireless-rc-adapter/wiki
+<br><br>
+### wireless-rc-adapter-2.1.ino
+First make sure you pair your RC Tx and Rx ...
+
+To verify that the software is working you can enable the serial debugging.<br>
+Edit wireless-rc-adapter-2.1.ino<br>
+Remove the comments in the front of<br> 
+_//#define SERIAL_DEBUG_
+and
+_//#define SERIAL_SPD 115200_
+<br><br>
+// >>> Serial-Debug options for troubleshooting <<<<br>
+define SERIAL_DEBUG  // Enable Serial Debug by uncommenting this line<br>
+define SERIAL_SPD 115200  // Set debug bitrate between 9600-115200 bps (default: 9600)
+
+Save the file<br>
+Upload / run
+
+Then using the terminal from the Arduino IDE you can follow the boot process and calibrations.
+You can also use that to verify the calibration and values the Arduino is receiving from the RC receiver.
+
+After you verify that the 3 channels are working, comment the serial DEBUG lines back, save, upload/run
+
+// >>> Serial-Debug options for troubleshooting <<<<br>
+#define SERIAL_DEBUG  // Enable Serial Debug by uncommenting this line<br>
+#define SERIAL_SPD 115200  // Set debug bitrate between 9600-115200 bps (default: 9600)
+<br><br>
+You can test the JS0 operation in a Linux machine, including the Jetson Nano (JTN) and Raspberry PI (RPI) with<br> 
+_#Open a terminal_<br>
+_#ls /dev/input/_<br>
+_#this command should show a js0 device listed_<br>
+e.g,<br>
+_#ls /dev/input_
+_#by-id  by-path  event0  event1  js0  mice
+  
+
+_#Then lets try reading joystick values_<br>
+_#sudo apt-get install joystick_<br>
+_#sudo jstest /dev/input/js0_
+![image27](/images/image27.png)
+<br><br>
+If you don’t see the joystick working on the JTN or RPI, then don’t try to use it on Donkey.
+<br><br>
+## Calibration
+On every startup it tries to load calibration data from the long-term memory and decides if those values are still correct or out of sync. The algorithm triggers a calibration automatically if necessary. Calibration can be triggered manually with powering the adapter while the CAL_CHANNEL is on full duty cycle. In other words the throttle must be up before start and it is automatically starts calibration on boot. When the device is in calibration mode, the leds are flashing steady on the board, and all the channel minimum and maximum values are getting recorded. During this time move all the configured sticks and pots/switches on the transmitter remote to its extents. After there is no more new min's or max's found the algorithm finishing the calibration within CAL_TIMEOUT by checking and saving the values in the long-term memory (eeprom). Leds are flashing twice and turns off, the adapter is now available as joystick on the device it is plugged in.
